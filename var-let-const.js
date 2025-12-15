@@ -9,7 +9,7 @@ Hoisted (moved to top)
 Can be redeclared and reassigned
 
 ❌ Not recommended in modern JS*/
-
+//
 function vartest(){
 
     var a = 10; 
