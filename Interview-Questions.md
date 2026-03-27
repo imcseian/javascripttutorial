@@ -12,10 +12,13 @@
 10. What is Hoisting?
 11. Shallow vs Deep Copy
 12. map vs forEach
-13. How to handle dynamic values in tests?
+13. How to handle dynamic values/ elements in tests?
 14. What is Event Loop?
 15. Why avoid setTimeout in tests?
 16. How do you check empty array?
+    ans : if (arr.length === 0) {
+  console.log("Array is empty")
+}
 17. How to retry logic manually?
 18. Why can’t we store Cypress command result in a variable?
 19. How to compare two arrays?
