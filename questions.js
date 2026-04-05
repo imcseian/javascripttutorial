@@ -98,6 +98,10 @@ true becomes 1
 let age = '15'
 console.log(age==15) // true
 console.log(age===15) // false
+//here we can convert this and make it true  (typecasting)
+let age = "15";
+
+console.log(Number(age) === 15); // true
 
 /* -----------------------------------------------------------------------------------------------
 6---> remove duplicates in array using ..new Set(aary) and without
@@ -173,7 +177,7 @@ A Promise is a JavaScript object that represents the eventual completion or fail
 | Nature          | Function         | Object                      |
 | Readability     | Poor when nested | Clean & chainable           |
 | Error handling  | Difficult        | Centralized with `.catch()` |
-| Chaining        | ❌ No             | ✅ Yes                       |
+| Chaining        | ❌ No             | ✅ Yes                      |
 | Maintainability | Low              | High                        |
 | Modern JS       | Legacy           | Standard                    |
 
@@ -252,6 +256,34 @@ let baga2 = JSON.parse(JSON.stringify(baga1)); // deep copy
 baga2.box.toy = 'ball';
 
 console.log(bag1.box.toy); // 👉 car 😄
+
+
+
+JSON.stringify() vs JSON.parse()
+
+//✅JSON.stringify()
+
+//👉 Converts JavaScript object → JSON string
+
+const user = { name: "Ram", age: 25 };
+
+const jsonString = JSON.stringify(user);
+
+console.log(jsonString);
+// '{
+// "name":"Ram",
+// "age":25
+// }'
+
+//✅ JSON.parse()
+
+//👉 Converts JSON string → JavaScript object
+
+const jsonString = '{"name":"Ram","age":25}';
+
+const user = JSON.parse(jsonString);
+
+console.log(user.name); // Ram
 /* -----------------------------------------------------------------------------------------------
 ✅ 27.----> cy.wrap ()
 
@@ -495,26 +527,21 @@ describe('Login Tests', () => {
 // print matrix any matrix
 
 
-function printmatrix (rows, cols ){
+function printMatrix(rows, cols) {
+  let count = 1;
 
-count = 1; 
-for (i=0; i<rows;i++)
-{
-rows ="";
-for (j=0;j<cols;j++)
-{
-  rows+=count+"" 
-  count ++;
+  for (let i = 0; i < rows; i++) {
+    let row = [];
 
+    for (let j = 0; j < cols; j++) {
+      row.push(count++);
+    }
 
-}
-console.log(row);
-
+    console.log(row);
+  }
 }
 
-}
-printmatrix (2,2)
-
+printMatrix(4, 4);
 /*
 | Join Type       | Meaning                                 |
 | --------------- | --------------------------------------- |
@@ -648,3 +675,105 @@ function longestSubstring(str) {
 
 // Test
 console.log(longestSubstring("abcabcbb")); // abc
+
+
+
+// anagram 
+
+function isAnagram(str1, str2) {
+  // remove spaces & convert to lowercase
+  str1 = str1.replace(/\s/g, '').toLowerCase();
+  str2 = str2.replace(/\s/g, '').toLowerCase();
+
+  // sort and compare
+  return str1.split('').sort().join('') === str2.split('').sort().join('');
+}
+
+// Test
+console.log(isAnagram("listen", "silent")); // true
+console.log(isAnagram("hello", "world"));   // false
+
+---//
+//nth highest
+function getNthHighest(arr, n) {
+  const unique = [...new Set(arr)]; // remove duplicates
+
+  if (n > unique.length) {
+    return "Not enough elements";
+  }
+
+  return unique.sort((a, b) => b - a)[n - 1];
+}
+
+// Example
+const arr = [10, 25, 5, 40, 15, 25, 40];
+
+console.log(getNthHighest(arr, 1)); // 40 (highest)
+console.log(getNthHighest(arr, 2)); // 25
+console.log(getNthHighest(arr, 3)); // 15
+
+
+//vowels 
+
+function getVowels(str) {
+  return str.match(/[aeiou]/gi) || [];
+}
+
+const input = "Hello World";
+const vowels = getVowels(input);
+
+console.log(vowels); // ['e', 'o', 'o']
+
+
+// fibonacii
+function fibonacciSeries(n) {
+  let fib1 = 0, fib2 = 1;
+
+  for (let i = 0; i < n; i++) {
+    console.log(fib1);
+    let fib = fib1;
+    fib1 = fib2;
+    fib2 = fib + fib2;
+  }
+}
+
+console.log(fibonacii(6)); 
+
+// prime 
+function checkPrime(n) {
+  if (n < 2) {
+    console.log("Not Prime");
+    return;
+  }
+
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) {
+      console.log("Not Prime");
+      return;
+    }
+  }
+
+  console.log("Prime");
+}
+
+
+
+// compare two arrays 
+//1. Compare arrays (same values & same order)
+
+function areArraysEqual(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+
+  return arr1.every((value, index) => value === arr2[index]);
+}
+
+// Example
+const a = [1, 2, 3];
+const b = [1, 2, 3];
+
+console.log(areArraysEqual(a, b)); // true
+
+//5. Deep compare (for objects inside array)
+function deepCompare(arr1, arr2) {
+  return JSON.stringify(arr1) === JSON.stringify(arr2);
+}

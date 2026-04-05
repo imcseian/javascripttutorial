@@ -107,3 +107,60 @@ const sum = nums.reduce((acc, curr) => acc + curr, 0);
 
 
 /
+
+
+----------------------------------------------------------------------------------
+
+data = [ 
+  { id: 1, user: { name: "Alice", age: 15 } }, 
+  { id: 2, user: { name: "Bob", age: 20 } }, 
+  { id: 3, user: { name: "Charlie", age: 25 } }, 
+  { id: 4, user: { name: "David", age: 30 } } 
+];
+from above code : 
+
+✅ 1. Print only names:
+
+const names = data.map(d => d.user.name);
+
+console.log(names); 
+output : 
+["Alice", "Bob", "Charlie", "David"]
+
+✅ 2. Can we write multiple lines inside map?
+
+const names = data.map(d => {
+  const name = d.user.name;
+  return name;
+});
+
+✅ 3. Can we use console.log inside map?
+
+data.map(d => {
+  console.log("User:", d.user.name);
+  return d.user.name;
+});
+--------------------------
+
+now i make the undefined the one user so what it will print 
+const data = [
+  { id: 1, user: { name: "Alice", age: 15 } },
+  { id: 2, user: { name: "Bob", age: 20 } },
+  { id: 3, user: undefined },
+  { id: 4, user: { name: "David", age: 30 } }
+];
+
+const names = data.map(d => d.user.name);
+console.log(names);
+
+output : TypeError: Cannot read properties of undefined (reading 'name')
+
+if we gonna use filter then it will filter prints withput error 
+
+const names = data
+  .filter(d => d.user)
+  .map(d => d.user.name);
+
+console.log(names);
+output : ["Alice", "Bob", "David"]
+

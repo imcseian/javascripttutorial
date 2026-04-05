@@ -1,5 +1,5 @@
 ```javascript
-const responsePromise = page.waitForResponse(res =>
+  const responsePromise = page.waitForResponse(res =>
   res.url().includes('/api/results') && res.status() === 200
 );
 
